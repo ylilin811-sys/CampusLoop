@@ -1,0 +1,53 @@
+<!-- pages/message/message.wxml - 消息与留言页 -->
+<view class="message-container container">
+  <!-- 顶部系统通知 banner -->
+  <view class="notice-card card">
+    <text class="notice-icon">📢</text>
+    <view class="notice-content">
+      <text class="notice-title">集市安全提醒</text>
+      <text class="notice-desc">校内交易建议选择宿舍楼下、食堂或图书馆等公共场所，当面验收。</text>
+    </view>
+  </view>
+
+  <!-- 消息对话列表 -->
+  <view class="chat-list">
+    <block wx:for="{{chatList}}" wx:key="id">
+      <view class="chat-item card" bindtap="openChat" data-index="{{index}}">
+        <view class="avatar-box">
+          <image class="avatar" src="{{item.avatar}}" />
+          <view wx:if="{{item.unread > 0}}" class="unread-badge">{{item.unread}}</view>
+        </view>
+        <view class="chat-info">
+          <view class="chat-header">
+            <text class="user-name">{{item.nick}}</text>
+            <text class="time-str">{{item.time}}</text>
+          </view>
+          <view class="goods-ref">关于: {{item.goodsTitle}}</view>
+          <view class="last-msg">{{item.lastMsg}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 简易聊天对话框 (Modal) -->
+  <view wx:if="{{activeChat}}" class="chat-modal">
+    <view class="modal-header">
+      <text class="modal-title">与 {{activeChat.nick}} 对话</text>
+      <text class="close-btn" bindtap="closeChat">✕</text>
+    </view>
+
+    <scroll-view class="chat-body" scroll-y scroll-into-view="{{lastMsgId}}">
+      <block wx:for="{{activeChat.messages}}" wx:key="id" id="msg-{{index}}">
+        <view class="msg-bubble {{item.isSelf ? 'self' : 'other'}}">
+          <image class="msg-avatar" src="{{item.isSelf ? userAvatar : activeChat.avatar}}" />
+          <view class="msg-text">{{item.text}}</view>
+        </view>
+      </block>
+    </scroll-view>
+
+    <view class="chat-footer">
+      <input class="msg-input" placeholder="输入你想咨询或约定交易地点..." value="{{inputMsg}}" bindinput="onInputMsg" bindconfirm="sendMsg" />
+      <button class="send-btn btn-primary" bindtap="sendMsg">发送</button>
+    </view>
+  </view>
+</view>

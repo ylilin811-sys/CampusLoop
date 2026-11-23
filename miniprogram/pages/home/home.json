@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "校园集市",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "onboarding": "/components/onboarding/onboarding",
+    "step-guide": "/components/step-guide/step-guide",
+    "skeleton": "/components/skeleton/skeleton"
+  }
+}

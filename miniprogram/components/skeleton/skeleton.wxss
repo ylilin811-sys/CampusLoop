@@ -1,0 +1,53 @@
+/* components/skeleton/skeleton.wxss */
+.skeleton-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10rpx 0;
+}
+
+.skeleton-card {
+  width: 48%;
+  background: var(--card-bg, #FFFFFF);
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 12rpx var(--shadow-color, rgba(0,0,0,0.05));
+}
+
+.skeleton-img {
+  width: 100%;
+  height: 260rpx;
+}
+
+.skeleton-content {
+  padding: 16rpx;
+}
+
+.skeleton-title {
+  width: 90%;
+  height: 32rpx;
+  margin-bottom: 12rpx;
+}
+
+.skeleton-line {
+  width: 60%;
+  height: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.skeleton-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skeleton-price {
+  width: 40%;
+  height: 36rpx;
+}
+
+.skeleton-tag {
+  width: 30%;
+  height: 28rpx;
+}

@@ -1,0 +1,62 @@
+<!-- components/onboarding/onboarding.wxml - 首次打开新手引导组件 -->
+<view class="onboarding-mask" wx:if="{{visible}}">
+  <!-- 右上角跳过按钮 -->
+  <view class="skip-btn" bindtap="onFinish">跳过</view>
+
+  <swiper class="guide-swiper" current="{{currentIndex}}" bindchange="onSwiperChange">
+    <!-- Slide 1 -->
+    <swiper-item>
+      <view class="swiper-content">
+        <view class="illustration-box bg-orange">
+          <text class="emoji-hero">📚 💻 🚲</text>
+          <view class="coin-badge">💰</view>
+        </view>
+        <view class="text-box {{currentIndex === 0 ? 'animate-fade-in-up' : ''}}">
+          <text class="title">闲置变现</text>
+          <text class="desc">图书、数码、生活用品快速转手\n让闲置物品在校园内流动起来</text>
+        </view>
+      </view>
+    </swiper-item>
+
+    <!-- Slide 2 -->
+    <swiper-item>
+      <view class="swiper-content">
+        <view class="illustration-box bg-blue">
+          <text class="emoji-hero">🥗 📦 🚗</text>
+          <view class="coin-badge">🤝</view>
+        </view>
+        <view class="text-box {{currentIndex === 1 ? 'animate-fade-in-up' : ''}}">
+          <text class="title">一起拼更便宜</text>
+          <text class="desc">拼饭外卖、拼快递分摊、拼车出行\n同校同学搭伙，省钱又方便</text>
+        </view>
+      </view>
+    </swiper-item>
+
+    <!-- Slide 3 -->
+    <swiper-item>
+      <view class="swiper-content">
+        <view class="illustration-box bg-green">
+          <text class="emoji-hero">🎓 🛡️ 🏫</text>
+          <view class="coin-badge">✨</view>
+        </view>
+        <view class="text-box {{currentIndex === 2 ? 'animate-fade-in-up' : ''}}">
+          <text class="title">校园内安全交易</text>
+          <text class="desc">实名校友交易，宿舍楼下当面验收\n零邮费、零诈骗、更安心</text>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 底部指示器与操作按钮 -->
+  <view class="footer-area">
+    <view class="dots-box">
+      <block wx:for="{{3}}" wx:key="index">
+        <view class="dot {{currentIndex === index ? 'active' : ''}}"></view>
+      </block>
+    </view>
+
+    <button wx:if="{{currentIndex === 2}}" class="start-btn btn-primary" bindtap="onFinish">
+      开始探索
+    </button>
+  </view>
+</view>

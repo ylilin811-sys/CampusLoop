@@ -1,84 +1,93 @@
-# 闲圈 · CampusLoop
+# 闲圈 · Xianquan
 
-**让闲置在校园里流转，让同学一起买得更划算。**
+面向学生的校园二手交易与拼团项目，让闲置物品找到新主人，也让同学更方便地一起购买所需物品。
 
-CampusLoop（闲圈）是一款面向学生的校园二手交易与拼团应用。你可以发布不再使用的教材、数码产品和生活用品，寻找需要它们的同学；也可以发起或参与拼团，和校园里的伙伴共同购买所需物品。
+项目包含 **Android 客户端、微信小程序和独立的商品估价服务**。当前以课程项目和功能原型为定位，适合学习、演示与继续开发。
 
-“Campus” 代表校园，“Loop” 代表循环与连接：让物品继续发挥价值，也让交易发生在更贴近日常生活的校园圈子中。
+## 功能与当前状态
 
-## 下载源码
+| 模块 | 已有实现 | 当前边界 |
+| --- | --- | --- |
+| 二手交易 | 商品浏览、分类、发布、详情、收藏及订单请求 | Android 主要使用本地 Room 数据库，不是多用户联网交易平台 |
+| 拼团 | 发起拼团、加入及人数展示、相关消息 | 小程序包含演示逻辑；云函数仍需完善并发与权限控制 |
+| 个人中心与消息 | 资料编辑、消息列表、引导与交互动效 | 本地资料与演示数据不等于服务端身份认证 |
+| 图书辅助发布 | ISBN 扫描、Google Books / Open Library 查询 | 需要网络，第三方服务可用性取决于运行环境 |
+| 商品估价 | Node.js 接口、模型估价、规则兜底、缓存与限流 | 默认可无密钥运行；不自动采集真实市场成交数据 |
 
-**[下载完整源码包 CampusLoop-source.zip](CampusLoop-source.zip?raw=true)**
+没有接入真实支付、资金托管或完整的线上交易后台。
 
-当前仓库以源码 ZIP 形式发布，解压后得到 `xianquan/` 项目目录，包含 Android 客户端、微信小程序、估价服务，以及各模块的配置、测试和文档。源码暂未展开为仓库中的文件目录。
-
-## 可以做什么
-
-| 功能 | 内容 |
-| --- | --- |
-| 校园二手 | 商品浏览、分类、发布、详情、收藏和订单请求 |
-| 校园拼团 | 发起拼团、加入拼团、人数展示和相关消息 |
-| 图书辅助发布 | Android 端支持 ISBN 扫描与书籍信息查询 |
-| 参考估价 | 根据商品信息和提供的价格样本给出参考区间，支持模型估价和规则兜底 |
-| 个人与消息 | 资料编辑、消息列表、新手引导和交互动效 |
-
-## 技术组成
-
-- **Android**：Kotlin、Jetpack Compose、Room、DataStore、Retrofit 和 Coil。
-- **微信小程序**：原生小程序页面、组件和云函数原型。
-- **估价服务**：Node.js，使用内置模块，包含输入校验、缓存、限流和规则降级。
+## 目录
 
 ```text
-xianquan/
-├── app/              Android 客户端
-├── miniprogram/      微信小程序
-├── cloudfunctions/  拼团与消息云函数
-├── price-server/    商品估价服务与测试
-├── gradle/          Android 构建配置
-└── docs/            项目状态和验证记录
+app/                 Android 应用（Kotlin / Jetpack Compose）
+miniprogram/         微信小程序页面和组件
+cloudfunctions/     joinGroup / sendMessage 云函数原型
+price-server/       Node.js 商品估价服务及测试
+domain/             原始包保留的用例参考文件，不参与 Android 构建
+gradle/             Gradle Wrapper 与依赖版本配置
+docs/               项目状态与检查记录
 ```
 
-## 快速体验估价服务
+Android 实际使用的业务用例位于 `app/src/main/java/com/example/homework2/domain/`。
 
-解压源码包，安装 Node.js 22 或更高版本，进入项目目录后执行：
+## 启动估价服务
+
+使用 Node.js 22 或更高版本。在仓库根目录执行：
 
 ```sh
 cd price-server
 node server.js
 ```
 
-服务默认监听 `http://127.0.0.1:8787`，健康检查路径为 `/healthz`。
+默认监听 `http://127.0.0.1:8787`，健康检查为 `GET /healthz`。无需密钥即可使用规则估价。
 
-**无 API 密钥也能体验规则估价。** 使用 DeepSeek 模型估价时，需要自行部署服务，将 `price-server/.env.example` 复制为 `.env`，填入自己的 `DEEPSEEK_API_KEY`，再运行：
+若要启用模型估价，将 `.env.example` 复制为 `.env`，仅在本机或服务器填写自己的 `DEEPSEEK_API_KEY`，然后运行：
 
 ```sh
 node --env-file=.env server.js
 ```
 
-开源包不附带作者的模型账号、DSH 登录信息或 API 密钥，不提供作者个人服务的访问权限。密钥只放在自己的服务端，不写入 App 或公开提交。
+接口字段与示例见 [估价服务文档](price-server/README.md)。密钥只保存在服务端，不写入客户端或提交到 Git。
 
-Android 和微信小程序的详细运行步骤见源码包中的根目录 `README.md`；估价接口说明见 `price-server/README.md`。
+## 运行 Android 客户端
 
-## 当前开发状态
+1. 在 Android Studio 中打开仓库根目录，安装 Android SDK 34。
+2. 由 Android Studio 生成本机 `local.properties`，不要提交该文件。
+3. 按原项目的 Gradle / JDK 配置同步依赖，选择 API 24 或更高版本的模拟器或设备运行 `app`。
+4. 如需估价，先启动 `price-server`。Android 模拟器默认通过 `http://10.0.2.2:8787` 访问电脑本机。
 
-这是课程项目与功能原型，适合学习、演示和继续开发：
+真机调试需要把 `PriceEstimateClient.kt` 中的 `BASE_URL` 改为电脑局域网地址，并让服务监听局域网接口。例如在 PowerShell 中：
 
-- Android 主要使用本地 Room 数据库；尚不是完整的多用户联网交易平台。
-- 微信小程序部分页面仍使用演示数据，云函数需要继续完善权限和并发控制。
-- 未接入真实支付或资金托管。
-- 估价服务的 HTTP 接口没有登录鉴权，公开部署前需要补充身份验证、额度控制和 HTTPS。
-- 原 Android 构建工具版本组合尚未验证；本次开源整理没有完成 APK 构建或微信云端联调。
+```powershell
+$env:HOST = '0.0.0.0'
+node server.js
+```
 
-**已有验证：** 2026-11-19 在 Windows / Node.js v24.21.0 下，估价服务 10 项测试通过，25 个 JavaScript 文件语法检查通过。未调用真实模型。
+**构建状态：** 保留了原包的 AGP 8.5.2、Kotlin 2.0.21、Gradle 9.6.0 和 Gradle Daemon JDK 25 配置；这组版本尚未通过本次完整构建验证，不能视为已验证的兼容组合。源码目标为 Java 17。本次环境没有 Android SDK，未生成 APK。版本兼容与设备验证是后续待办，详见 [项目状态](docs/PROJECT_STATUS.md)。
 
-源码包包含 GitHub Actions 配置，但 ZIP 内的工作流不会自动运行；当前仓库没有据此产生 CI 验证结果。
+## 运行微信小程序
+
+1. 在微信开发者工具中导入仓库根目录的 `project.config.json`。
+2. 默认 `touristappid` 用于原型预览；云开发功能需要自己的 AppID 和云开发环境。
+3. 在 `miniprogram/app.js` 的 `wx.cloud.init` 中配置自己的环境。
+4. 按实际业务权限创建 `goods`、`messages` 集合，部署 `cloudfunctions/joinGroup` 和 `cloudfunctions/sendMessage`（云端安装依赖）。
+5. 如需云端估价，按估价服务文档单独部署 `priceEstimate`。
+
+部分页面仍使用内置样例或本地状态，部署云函数不会自动完成所有页面的数据联通。不要为了跑通演示而把数据库设置为公开可写。
+
+## 验证
+
+```sh
+cd price-server
+npm test
+```
+
+GitHub Actions 已配置估价服务测试与小程序 / 云函数 JavaScript 语法检查；不依赖 API 密钥，不调用真实模型。它不代表 Android 构建或微信云端端到端验证。
 
 ## 参与开发
 
-欢迎提交 Issue，描述遇到的问题、复现步骤或希望增加的功能。修改源码后，可以运行 `price-server` 中的 `npm test` 验证估价逻辑。更详细的贡献说明见源码包内的 `CONTRIBUTING.md`。
+欢迎通过 Issue 描述问题或提出改进，再通过 Pull Request 提交修改。请阅读 [贡献指南](CONTRIBUTING.md)、[安全说明](SECURITY.md) 和 [项目状态](docs/PROJECT_STATUS.md)。
 
-后续方向包括完善多用户数据同步、拼团并发处理、账号权限、设备测试，以及补充实际运行截图。
+## 许可证
 
-## 许可证与第三方资源
-
-项目自身代码采用 [MIT 许可证](LICENSE)。第三方依赖和远程示例图片仍遵循各自许可；具体来源和待核实事项见源码包内的 `THIRD_PARTY_NOTICES.md`。安全边界见 `SECURITY.md`。
+项目自身代码采用 [MIT](LICENSE) 许可证。依赖、远程图片及其他第三方资源仍遵循各自许可，见 [第三方资源说明](THIRD_PARTY_NOTICES.md)。

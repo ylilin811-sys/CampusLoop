@@ -1,0 +1,91 @@
+/* components/confetti/confetti.wxss */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10005;
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 飘花彩带动画 */
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-100rpx) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(120vh) rotate(720deg) scale(0.6);
+    opacity: 0.2;
+  }
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -40rpx;
+  border-radius: 4rpx;
+  animation: confettiFall linear infinite;
+  z-index: 10006;
+}
+
+/* 弹窗样式 */
+.success-dialog {
+  width: 580rpx;
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 48rpx 36rpx;
+  text-align: center;
+  box-shadow: 0 20rpx 50rpx rgba(0, 0, 0, 0.3);
+  z-index: 10007;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .success-dialog {
+    background: #242424;
+    color: #FFFFFF;
+  }
+}
+
+.icon-circle {
+  width: 120rpx;
+  height: 120rpx;
+  background: #FFF0E6;
+  border-radius: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(255, 138, 61, 0.2);
+}
+
+.dialog-title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--text-main, #333333);
+  margin-bottom: 16rpx;
+}
+
+.dialog-desc {
+  font-size: 28rpx;
+  color: var(--text-secondary, #666666);
+  line-height: 1.5;
+  margin-bottom: 36rpx;
+}
+
+.confirm-btn {
+  width: 80% !important;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  padding: 0;
+}

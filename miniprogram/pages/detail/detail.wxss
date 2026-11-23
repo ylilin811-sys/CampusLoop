@@ -1,0 +1,353 @@
+/* pages/detail/detail.wxss */
+.detail-container {
+  padding-bottom: 160rpx;
+}
+
+/* 1. 轮播图 */
+.banner-box {
+  position: relative;
+  width: 100vw;
+  height: 600rpx;
+}
+
+.goods-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.slide-img {
+  width: 100%;
+  height: 100%;
+}
+
+.tag-badge {
+  position: absolute;
+  top: 30rpx;
+  left: 30rpx;
+  padding: 8rpx 24rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.2);
+}
+
+/* 2. 拼单专属状态条 */
+.group-banner {
+  margin: 24rpx;
+  background: linear-gradient(135deg, #FFF6F0 0%, #FFE8D6 100%);
+  border: 2rpx solid #FFD0B0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .group-banner {
+    background: #3D2618;
+    border-color: #5E3922;
+  }
+}
+
+.banner-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.banner-title {
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.fire-icon {
+  font-size: 36rpx;
+  margin-right: 8rpx;
+}
+
+.countdown-box {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+}
+
+.cd-val {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 16rpx;
+  background: rgba(255, 138, 61, 0.2);
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin-bottom: 16rpx;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FF9A52 0%, #FF8A3D 100%);
+  border-radius: 8rpx;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.member-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 26rpx;
+  margin-bottom: 24rpx;
+}
+
+.highlight-num {
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 32rpx;
+}
+
+.status-tip {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.status-tip.full {
+  color: var(--success-color);
+  font-weight: 700;
+}
+
+.member-avatars {
+  display: flex;
+  gap: 16rpx;
+}
+
+.avatar-item {
+  position: relative;
+  width: 72rpx;
+  height: 72rpx;
+}
+
+.m-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3rpx solid #FFFFFF;
+}
+
+.creator-badge {
+  position: absolute;
+  bottom: -6rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary-color);
+  color: #FFFFFF;
+  font-size: 16rpx;
+  padding: 2rpx 8rpx;
+  border-radius: 10rpx;
+  white-space: nowrap;
+}
+
+.avatar-item.empty {
+  border: 3rpx dashed #FFB380;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plus {
+  color: #FFB380;
+  font-size: 32rpx;
+}
+
+/* 3. 核心价格与标题 */
+.info-card {
+  margin: 0 24rpx 24rpx 24rpx;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.price-box {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.currency {
+  font-size: 28rpx;
+}
+
+.price-val {
+  font-size: 52rpx;
+}
+
+.unit {
+  font-size: 24rpx;
+  color: var(--text-muted);
+  font-weight: normal;
+  margin-left: 6rpx;
+}
+
+.fav-action {
+  display: flex;
+  align-items: center;
+  background: #F8F8F8;
+  padding: 10rpx 24rpx;
+  border-radius: 30rpx;
+}
+
+@media (prefers-color-scheme: dark) {
+  .fav-action {
+    background: #2A2A2A;
+  }
+}
+
+.fav-icon {
+  font-size: 32rpx;
+  margin-right: 8rpx;
+}
+
+.fav-text {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+}
+
+.goods-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.4;
+  margin-bottom: 20rpx;
+}
+
+.meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid var(--border-color);
+  font-size: 24rpx;
+  color: var(--text-muted);
+}
+
+/* 4. 卖家卡片 */
+.seller-card {
+  margin: 0 24rpx 24rpx 24rpx;
+  display: flex;
+  align-items: center;
+}
+
+.seller-avatar {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.seller-info {
+  flex: 1;
+}
+
+.seller-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 6rpx;
+}
+
+.seller-tag {
+  font-size: 22rpx;
+  color: var(--success-color);
+}
+
+.contact-mini-btn {
+  background: var(--primary-light);
+  color: var(--primary-color);
+  padding: 12rpx 28rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+/* 5. 描述 */
+.desc-card {
+  margin: 0 24rpx 24rpx 24rpx;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 16rpx;
+}
+
+.desc-text {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+/* 6. 底部固定操作栏 */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 110rpx;
+  background: var(--card-bg);
+  border-top: 1rpx solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  z-index: 900;
+  box-shadow: 0 -4rpx 16rpx var(--shadow-color);
+}
+
+.bar-left {
+  display: flex;
+  gap: 36rpx;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-icon {
+  font-size: 36rpx;
+}
+
+.btn-text {
+  font-size: 20rpx;
+  color: var(--text-muted);
+}
+
+.bar-right {
+  flex: 1;
+  margin-left: 40rpx;
+}
+
+.buy-btn, .group-join-btn {
+  width: 100% !important;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  margin: 0;
+  padding: 0;
+}
+
+.group-join-btn.joined {
+  background: #07C160 !important;
+  box-shadow: 0 8rpx 20rpx rgba(7, 193, 96, 0.3) !important;
+}
+
+.group-join-btn.disabled {
+  background: #CCCCCC !important;
+  box-shadow: none !important;
+}

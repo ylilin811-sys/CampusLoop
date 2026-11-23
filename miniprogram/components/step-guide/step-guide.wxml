@@ -1,0 +1,24 @@
+<!-- components/step-guide/step-guide.wxml - 步骤式高亮蒙层引导组件 -->
+<view class="step-guide-mask" wx:if="{{visible}}">
+  <!-- 聚焦高亮框 (带box-shadow遮罩和CSS过渡动画) -->
+  <view
+    class="spotlight-box"
+    style="top: {{currentStepRect.top}}px; left: {{currentStepRect.left}}px; width: {{currentStepRect.width}}px; height: {{currentStepRect.height}}px; border-radius: {{currentStepRect.borderRadius || '16rpx'}};"
+  ></view>
+
+  <!-- 提示气泡 -->
+  <view
+    class="tooltip-box {{tooltipPosition}}"
+    style="top: {{tooltipTop}}px; left: {{tooltipLeft}}px;"
+  >
+    <view class="step-badge">步骤 {{currentStep + 1}}/{{steps.length}}</view>
+    <view class="tooltip-title">{{steps[currentStep].title}}</view>
+    <view class="tooltip-desc">{{steps[currentStep].desc}}</view>
+    <view class="tooltip-actions">
+      <view class="skip-step" bindtap="onFinish">跳过引导</view>
+      <button class="next-btn btn-primary" bindtap="onNextStep">
+        {{currentStep < steps.length - 1 ? '下一步' : '我知道了'}}
+      </button>
+    </view>
+  </view>
+</view>

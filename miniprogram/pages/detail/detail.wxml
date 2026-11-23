@@ -1,0 +1,128 @@
+<!-- pages/detail/detail.wxml - 详情页 -->
+<view class="detail-container">
+  <!-- 拼单成功撒花动画组件 -->
+  <confetti visible="{{showConfetti}}" bind:close="onCloseConfetti" />
+
+  <!-- 1. 图片轮播 -->
+  <view class="banner-box">
+    <swiper class="goods-swiper" indicator-dots autoplay circular interval="{{4000}}">
+      <block wx:for="{{goods.images}}" wx:key="*this">
+        <swiper-item>
+          <image class="slide-img" src="{{item}}" mode="aspectFill" bindtap="previewImage" data-src="{{item}}" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="tag-badge {{goods.type === 'group' ? 'tag-group' : 'tag-secondhand'}}">
+      {{goods.type === 'group' ? '拼单' : '二手闲置'}}
+    </view>
+  </view>
+
+  <!-- 2. 拼单专属状态条 & 倒计时 -->
+  <view wx:if="{{goods.type === 'group'}}" class="group-banner card">
+    <view class="banner-header">
+      <view class="banner-title">
+        <text class="fire-icon">🔥</text>
+        <text>拼单进行中</text>
+      </view>
+      <view class="countdown-box">
+        <text class="cd-label">距截止剩余: </text>
+        <text class="cd-val">{{countdownText}}</text>
+      </view>
+    </view>
+
+    <!-- 平滑进度条 -->
+    <view class="progress-bar-bg">
+      <view class="progress-bar-fill" style="width: {{progressPercent}}%"></view>
+    </view>
+
+    <view class="member-meta">
+      <view class="member-count">
+        已拼 <text class="highlight-num">{{goods.currentCount}}</text> 人 / 人数上限 {{goods.maxCount}} 人
+      </view>
+      <text class="status-tip {{goods.currentCount >= goods.maxCount ? 'full' : ''}}">
+        {{goods.currentCount >= goods.maxCount ? '🎉 拼单已满员' : '还差 ' + (goods.maxCount - goods.currentCount) + ' 人'}}
+      </text>
+    </view>
+
+    <!-- 成员头像列表 -->
+    <view class="member-avatars">
+      <block wx:for="{{goods.members || []}}" wx:key="index">
+        <view class="avatar-item">
+          <image class="m-avatar" src="{{item.avatarUrl || 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'}}" />
+          <text wx:if="{{item.isCreator}}" class="creator-badge">发起人</text>
+        </view>
+      </block>
+      <block wx:for="{{goods.maxCount - (goods.members ? goods.members.length : 1)}}" wx:key="*this">
+        <view class="avatar-item empty">
+          <text class="plus">?</text>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 3. 核心价格与标题 -->
+  <view class="info-card card">
+    <view class="price-row">
+      <view class="price-box">
+        <text class="currency">¥</text>
+        <text class="price-val">{{goods.price}}</text>
+        <text wx:if="{{goods.type === 'group'}}" class="unit">/人分摊</text>
+      </view>
+      <view class="fav-action {{goods.isFav ? 'animate-heart-bounce' : ''}}" bindtap="toggleFavorite">
+        <text class="fav-icon">{{goods.isFav ? '❤️' : '🤍'}}</text>
+        <text class="fav-text">{{goods.isFav ? '已收藏' : '收藏'}}</text>
+      </view>
+    </view>
+
+    <view class="goods-title">{{goods.title}}</view>
+
+    <view class="meta-row">
+      <text class="meta-item">📍 地点：{{goods.location || '校内当面'}}</text>
+      <text class="meta-item">🕒 发布于 {{publishTimeStr}}</text>
+    </view>
+  </view>
+
+  <!-- 4. 卖家/发起人信息 -->
+  <view class="seller-card card">
+    <image class="seller-avatar" src="{{goods.userAvatar || 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'}}" />
+    <view class="seller-info">
+      <view class="seller-name">{{goods.userNick || '校友卖家'}}</view>
+      <view class="seller-tag">🎓 本校认证学长学姐</view>
+    </view>
+    <view class="contact-mini-btn" bindtap="contactSeller">私信学友</view>
+  </view>
+
+  <!-- 5. 详细描述 -->
+  <view class="desc-card card">
+    <view class="card-title">物品与交易说明</view>
+    <view class="desc-text">{{goods.description}}</view>
+  </view>
+
+  <!-- 6. 底部固定操作栏 -->
+  <view class="bottom-bar">
+    <view class="bar-left">
+      <view class="action-btn" bindtap="contactSeller">
+        <text class="btn-icon">💬</text>
+        <text class="btn-text">留言</text>
+      </view>
+      <view class="action-btn" bindtap="toggleFavorite">
+        <text class="btn-icon">{{goods.isFav ? '❤️' : '🤍'}}</text>
+        <text class="btn-text">收藏</text>
+      </view>
+    </view>
+
+    <view class="bar-right">
+      <button wx:if="{{goods.type === 'secondhand'}}" class="buy-btn btn-primary" bindtap="contactSeller">
+        我想要 (私信交易)
+      </button>
+
+      <button
+        wx:else
+        class="group-join-btn btn-primary {{hasJoined ? 'joined' : ''}} {{goods.currentCount >= goods.maxCount ? 'disabled' : ''}}"
+        bindtap="joinGroup"
+      >
+        {{hasJoined ? '已参与拼单' : (goods.currentCount >= goods.maxCount ? '拼单已满员' : '加入拼单分摊')}}
+      </button>
+    </view>
+  </view>
+</view>

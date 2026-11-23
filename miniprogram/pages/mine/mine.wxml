@@ -1,0 +1,102 @@
+<!-- pages/mine/mine.wxml - 我的页面 -->
+<view class="mine-container container">
+  <!-- 1. 个人头部信息 & 授权登录 -->
+  <view class="profile-card card">
+    <block wx:if="{{isLoggedIn}}">
+      <view class="user-row">
+        <image class="user-avatar" src="{{userInfo.avatarUrl}}" />
+        <view class="user-info">
+          <view class="user-name-box">
+            <text class="user-name">{{userInfo.nickName}}</text>
+            <text class="verify-tag">🎓 已校友认证</text>
+          </view>
+          <text class="user-campus">清华大学 / 紫荆公寓区</text>
+        </view>
+      </view>
+    </block>
+
+    <!-- 未登录 -> 快捷授权 -->
+    <block wx:else>
+      <view class="login-wrapper">
+        <button class="avatar-choose-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+          <image class="avatar-placeholder" src="{{tempAvatarUrl || 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'}}" />
+        </button>
+        <view class="login-inputs">
+          <input type="nickname" class="nickname-input" placeholder="点击选择微信头像与输入昵称" value="{{inputNickname}}" bindinput="onInputNickname" />
+          <button class="login-btn btn-primary" bindtap="confirmLogin">授权快捷登录</button>
+        </view>
+      </view>
+    </block>
+
+    <!-- 统计指标 Bar -->
+    <view class="stats-bar">
+      <view class="stat-item" bindtap="switchTab" data-tab="publish">
+        <text class="stat-num">{{myPublishList.length}}</text>
+        <text class="stat-label">我的发布</text>
+      </view>
+      <view class="stat-item" bindtap="switchTab" data-tab="fav">
+        <text class="stat-num">{{myFavList.length}}</text>
+        <text class="stat-label">我的收藏</text>
+      </view>
+      <view class="stat-item" bindtap="switchTab" data-tab="group">
+        <text class="stat-num">{{myGroupList.length}}</text>
+        <text class="stat-label">我的拼单</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 2. 分类 Tab 切换列表 -->
+  <view class="tabs-card card">
+    <view class="tab-header">
+      <view class="tab-title {{currentTab === 'publish' ? 'active' : ''}}" bindtap="switchTab" data-tab="publish">我的发布</view>
+      <view class="tab-title {{currentTab === 'fav' ? 'active' : ''}}" bindtap="switchTab" data-tab="fav">我的收藏</view>
+      <view class="tab-title {{currentTab === 'group' ? 'active' : ''}}" bindtap="switchTab" data-tab="group">我的拼单</view>
+    </view>
+
+    <view class="tab-content">
+      <!-- 空列表 -->
+      <view class="empty-box" wx:if="{{displayList.length === 0}}">
+        <text class="empty-icon">📂</text>
+        <text class="empty-text">暂无相关数据记录</text>
+      </view>
+
+      <!-- 列表条目 -->
+      <view class="item-list" wx:else>
+        <block wx:for="{{displayList}}" wx:key="_id">
+          <view class="list-item" bindtap="goToDetail" data-id="{{item._id}}">
+            <image class="item-thumb" src="{{item.images[0]}}" mode="aspectFill" />
+            <view class="item-details">
+              <text class="item-title">{{item.title}}</text>
+              <view class="item-sub">
+                <text class="item-price">¥{{item.price}}</text>
+                <text class="item-tag {{item.type === 'group' ? 'tag-group' : 'tag-secondhand'}}">
+                  {{item.type === 'group' ? '拼单' : '二手'}}
+                </text>
+              </view>
+            </view>
+            <text class="arrow">❯</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <!-- 3. 设置与重置新手引导入口 -->
+  <view class="menu-card card">
+    <view class="menu-item" bindtap="replayGuide">
+      <view class="menu-left">
+        <text class="menu-icon">💡</text>
+        <text class="menu-text">重新查看新手引导</text>
+      </view>
+      <text class="arrow">❯</text>
+    </view>
+
+    <view class="menu-item" bindtap="showAbout">
+      <view class="menu-left">
+        <text class="menu-icon">🏫</text>
+        <text class="menu-text">关于「校园集市」</text>
+      </view>
+      <text class="arrow">❯</text>
+    </view>
+  </view>
+</view>

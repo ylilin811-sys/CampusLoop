@@ -1,0 +1,16 @@
+<!-- components/skeleton/skeleton.wxml - 列表骨架屏加载组件 -->
+<view class="skeleton-grid">
+  <block wx:for="{{count}}" wx:key="index">
+    <view class="skeleton-card">
+      <view class="skeleton-img skeleton-item"></view>
+      <view class="skeleton-content">
+        <view class="skeleton-title skeleton-item"></view>
+        <view class="skeleton-line skeleton-item"></view>
+        <view class="skeleton-footer">
+          <view class="skeleton-price skeleton-item"></view>
+          <view class="skeleton-tag skeleton-item"></view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

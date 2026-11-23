@@ -1,0 +1,140 @@
+<!-- pages/publish/publish.wxml - 发布页 -->
+<view class="publish-container container">
+  <!-- 1. 类型切换 (二手 vs 拼单) -->
+  <view class="type-switch card">
+    <view
+      class="switch-item {{type === 'secondhand' ? 'active' : ''}}"
+      bindtap="switchType"
+      data-type="secondhand"
+    >
+      <text class="switch-icon">🏷️</text>
+      <text class="switch-title">发布二手</text>
+    </view>
+    <view
+      class="switch-item {{type === 'group' ? 'active' : ''}}"
+      bindtap="switchType"
+      data-type="group"
+    >
+      <text class="switch-icon">🤝</text>
+      <text class="switch-title">发起拼单</text>
+    </view>
+  </view>
+
+  <!-- 2. 图片上传区域 (最多9张) -->
+  <view class="form-card card">
+    <view class="card-title">上传图片 (最多9张)</view>
+    <view class="uploader-grid">
+      <block wx:for="{{images}}" wx:key="index">
+        <view class="uploader-item">
+          <image class="uploader-img" src="{{item}}" mode="aspectFill" bindtap="previewImage" data-src="{{item}}" />
+          <view class="delete-btn" catchtap="deleteImage" data-index="{{index}}">✕</view>
+        </view>
+      </block>
+
+      <view wx:if="{{images.length < 9}}" class="uploader-add-btn" bindtap="chooseImage">
+        <text class="add-icon">📷</text>
+        <text class="add-text">{{images.length}}/9</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 3. 基本信息填写 -->
+  <view class="form-card card">
+    <!-- 标题 -->
+    <view class="form-item">
+      <text class="label">标题</text>
+      <input
+        class="input-field"
+        placeholder="{{type === 'secondhand' ? '品名、品牌、型号 (例: 考研数学讲义)' : '拼单内容 (例: 麦当劳拼餐/顺风车)'}}"
+        value="{{title}}"
+        bindinput="onInputTitle"
+      />
+    </view>
+
+    <!-- 分类 -->
+    <view class="form-item">
+      <text class="label">分类</text>
+      <picker bindchange="onCategoryChange" value="{{categoryIndex}}" range="{{categoryList}}" range-key="name">
+        <view class="picker-value">
+          <text>{{categoryList[categoryIndex].name}}</text>
+          <text class="arrow">❯</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 价格 -->
+    <view class="form-item">
+      <text class="label">{{type === 'secondhand' ? '出售价格 (元)' : '人均分摊 (元)'}}</text>
+      <input
+        class="input-field"
+        type="digit"
+        placeholder="0.00"
+        value="{{price}}"
+        bindinput="onInputPrice"
+      />
+    </view>
+
+    <!-- 拼单专属配置：人数上限 & 截止时间 -->
+    <block wx:if="{{type === 'group'}}">
+      <view class="form-item animate-fade-in-up">
+        <text class="label">拼单人数上限 (人)</text>
+        <input
+          class="input-field"
+          type="number"
+          placeholder="如: 2"
+          value="{{maxCount}}"
+          bindinput="onInputMaxCount"
+        />
+      </view>
+
+      <view class="form-item animate-fade-in-up">
+        <text class="label">截止日期</text>
+        <picker mode="date" value="{{endDate}}" start="{{todayDate}}" bindchange="onDateChange">
+          <view class="picker-value">
+            <text>{{endDate || '选择日期'}}</text>
+            <text class="arrow">❯</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="form-item animate-fade-in-up">
+        <text class="label">截止时间</text>
+        <picker mode="time" value="{{endTime}}" bindchange="onTimeChange">
+          <view class="picker-value">
+            <text>{{endTime || '选择时间'}}</text>
+            <text class="arrow">❯</text>
+          </view>
+        </picker>
+      </view>
+    </block>
+
+    <!-- 交易地点 -->
+    <view class="form-item">
+      <text class="label">交易/集合地点</text>
+      <input
+        class="input-field"
+        placeholder="例如: 宿舍5舍楼下 / 二食堂门口 / 微信联系"
+        value="{{location}}"
+        bindinput="onInputLocation"
+      />
+    </view>
+
+    <!-- 详细描述 -->
+    <view class="form-item vertical">
+      <text class="label">详细描述</text>
+      <textarea
+        class="textarea-field"
+        placeholder="详细说明新旧程度、转手原因、联系方式或拼单规则..."
+        value="{{description}}"
+        bindinput="onInputDescription"
+        maxlength="500"
+      />
+      <view class="word-count">{{description.length}}/500</view>
+    </view>
+  </view>
+
+  <!-- 4. 提交发布按钮 -->
+  <button class="submit-btn btn-primary" loading="{{submitting}}" bindtap="onSubmit">
+    {{submitting ? '提交中...' : (type === 'secondhand' ? '确认发布二手' : '发起拼单')}}
+  </button>
+</view>

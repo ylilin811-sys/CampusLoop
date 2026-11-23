@@ -1,0 +1,139 @@
+<!-- pages/home/home.wxml - 首页 -->
+<view class="home-container">
+  <!-- 首次打开全屏 Swiper 引导组件 -->
+  <onboarding visible="{{showOnboarding}}" bind:finish="onOnboardingFinish" />
+
+  <!-- 步骤式高亮蒙层引导组件 -->
+  <step-guide visible="{{showStepGuide}}" bind:finish="onStepGuideFinish" />
+
+  <!-- 1. 顶部搜索栏 -->
+  <view class="search-header">
+    <view class="search-bar">
+      <text class="search-icon">🔍</text>
+      <input
+        class="search-input"
+        placeholder="搜二手书、数码、拼餐、拼车..."
+        value="{{searchKeyword}}"
+        bindinput="onSearchInput"
+        bindconfirm="onSearch"
+      />
+      <text wx:if="{{searchKeyword}}" class="clear-icon" bindtap="clearSearch">✕</text>
+    </view>
+  </view>
+
+  <!-- 2. 分类标签栏 -->
+  <scroll-view class="category-scroll" scroll-x enable-flex show-scrollbar="{{false}}">
+    <block wx:for="{{categories}}" wx:key="id">
+      <view
+        class="category-item {{currentCategory === item.id ? 'active' : ''}}"
+        bindtap="onSelectCategory"
+        data-id="{{item.id}}"
+      >
+        <text class="category-icon">{{item.icon}}</text>
+        <text class="category-name">{{item.name}}</text>
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- 3. 骨架屏加载状态 -->
+  <view class="container" wx:if="{{loading && goodsList.length === 0}}">
+    <skeleton count="{{6}}" />
+  </view>
+
+  <!-- 4. 商品卡片列表（瀑布流 / 双列） -->
+  <view class="container" wx:else>
+    <view class="empty-state" wx:if="{{goodsList.length === 0}}">
+      <text class="empty-emoji">📦</text>
+      <text class="empty-text">暂无相关发布，快去发布第一个物品吧！</text>
+    </view>
+
+    <view class="goods-grid">
+      <block wx:for="{{goodsList}}" wx:key="_id">
+        <view
+          class="goods-card card animate-fade-in-up"
+          style="animation-delay: {{index * 0.06}}s;"
+          bindtap="goToDetail"
+          data-id="{{item._id}}"
+        >
+          <!-- 商品缩略图 -->
+          <view class="img-wrapper">
+            <image class="goods-img" src="{{item.images[0] || '/images/placeholder.png'}}" mode="aspectFill" lazy-load />
+            <!-- 类型标签 -->
+            <view class="tag-badge {{item.type === 'group' ? 'tag-group' : 'tag-secondhand'}}">
+              {{item.type === 'group' ? '拼单' : '二手'}}
+            </view>
+          </view>
+
+          <!-- 卡片内容 -->
+          <view class="goods-info">
+            <text class="goods-title">{{item.title}}</text>
+
+            <!-- 拼单专属进度条 -->
+            <view wx:if="{{item.type === 'group'}}" class="group-progress-box">
+              <view class="progress-bar-bg">
+                <view
+                  class="progress-bar-fill"
+                  style="width: {{ (item.currentCount / item.maxCount) * 100 }}%"
+                ></view>
+              </view>
+              <view class="progress-text">
+                <text class="count-num">已拼{{item.currentCount}}/{{item.maxCount}}人</text>
+                <text class="status-badge {{item.currentCount >= item.maxCount ? 'full' : 'ongoing'}}">
+                  {{item.currentCount >= item.maxCount ? '已满' : '进行中'}}
+                </text>
+              </view>
+            </view>
+
+            <!-- 价格与收藏 -->
+            <view class="goods-footer">
+              <view class="price-box">
+                <text class="currency">¥</text>
+                <text class="price-val">{{item.price}}</text>
+                <text wx:if="{{item.type === 'group'}}" class="unit">/人</text>
+              </view>
+              <view
+                class="fav-btn {{item.isFav ? 'animate-heart-bounce' : ''}}"
+                catchtap="toggleFavorite"
+                data-index="{{index}}"
+                data-id="{{item._id}}"
+              >
+                <text class="fav-icon">{{item.isFav ? '❤️' : '🤍'}}</text>
+              </view>
+            </view>
+
+            <!-- 卖家信息/时间 -->
+            <view class="seller-meta">
+              <image class="avatar" src="{{item.userAvatar || 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'}}" />
+              <text class="nickname">{{item.userNick || '校友'}}</text>
+              <text class="location">{{item.location || '宿舍区'}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <!-- 底部分页加载提示 -->
+    <view class="load-more" wx:if="{{goodsList.length > 0}}">
+      <text wx:if="{{hasMore}}">⏳ 正在加载更多...</text>
+      <text wx:else>🎉 已加载全部商品</text>
+    </view>
+  </view>
+
+  <!-- 5. 右下角悬浮发布按钮（呼吸脉冲动画 + 展开菜单） -->
+  <view class="fab-wrapper">
+    <view wx:if="{{fabExpanded}}" class="fab-menu animate-fade-in-up">
+      <view class="fab-sub-btn sub-group" bindtap="goToPublish" data-type="group">
+        <text class="sub-icon">🤝</text>
+        <text class="sub-text">发起拼单</text>
+      </view>
+      <view class="fab-sub-btn sub-secondhand" bindtap="goToPublish" data-type="secondhand">
+        <text class="sub-icon">🏷️</text>
+        <text class="sub-text">发布二手</text>
+      </view>
+    </view>
+
+    <view class="fab-main-btn animate-pulse" bindtap="toggleFab">
+      <text class="fab-icon">{{fabExpanded ? '✕' : '＋'}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,18 @@
+<!-- components/confetti/confetti.wxml - 拼单成功撒花/彩带动画组件 -->
+<view class="confetti-container" wx:if="{{visible}}">
+  <!-- 30 个多彩散落粒子 -->
+  <block wx:for="{{particles}}" wx:key="index">
+    <view
+      class="confetti-piece"
+      style="left: {{item.left}}%; background-color: {{item.color}}; width: {{item.size}}rpx; height: {{item.size * 1.5}}rpx; animation-delay: {{item.delay}}s; animation-duration: {{item.duration}}s;"
+    ></view>
+  </block>
+
+  <!-- 成功弹窗卡片 -->
+  <view class="success-dialog animate-fade-in-up">
+    <view class="icon-circle">🎉</view>
+    <view class="dialog-title">拼单成功！</view>
+    <view class="dialog-desc">已达到目标拼单人数，快联系车友/饭友行动吧！</view>
+    <button class="confirm-btn btn-primary" bindtap="onClose">太棒啦！</button>
+  </view>
+</view>

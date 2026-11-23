@@ -1,0 +1,93 @@
+/* components/step-guide/step-guide.wxss */
+.step-guide-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9998;
+  pointer-events: auto;
+}
+
+/* 聚焦高亮框，利用巨大的 box-shadow 形成外侧遮罩 */
+.spotlight-box {
+  position: fixed;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.75);
+  border: 4rpx solid #FF8A3D;
+  box-sizing: border-box;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 9999;
+  pointer-events: none;
+  animation: pulseHighlight 1.5s infinite alternate;
+}
+
+@keyframes pulseHighlight {
+  from { border-color: #FF8A3D; }
+  to { border-color: #FFAA66; }
+}
+
+/* 提示气泡框 */
+.tooltip-box {
+  position: fixed;
+  width: 580rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  box-shadow: 0 16rpx 40rpx rgba(0, 0, 0, 0.25);
+  z-index: 10000;
+  transition: all 0.4s ease;
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tooltip-box {
+    background: #242424;
+    color: #FFFFFF;
+  }
+}
+
+.step-badge {
+  display: inline-block;
+  background: rgba(255, 138, 61, 0.15);
+  color: var(--primary-color, #FF8A3D);
+  font-size: 22rpx;
+  font-weight: 600;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  margin-bottom: 12rpx;
+}
+
+.tooltip-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--text-main, #333333);
+  margin-bottom: 12rpx;
+}
+
+.tooltip-desc {
+  font-size: 26rpx;
+  color: var(--text-secondary, #666666);
+  line-height: 1.5;
+  margin-bottom: 28rpx;
+}
+
+.tooltip-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.skip-step {
+  font-size: 26rpx;
+  color: #999999;
+  padding: 10rpx 0;
+}
+
+.next-btn {
+  width: 200rpx !important;
+  height: 68rpx;
+  line-height: 68rpx;
+  font-size: 26rpx;
+  margin: 0;
+  padding: 0;
+}

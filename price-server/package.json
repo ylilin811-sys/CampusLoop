@@ -1,0 +1,15 @@
+{
+  "name": "campus-price-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "校园二手/拼单 AI 估价服务：输入商品信息与同款成交样本，输出价格区间、建议价与理由",
+  "main": "index.js",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node --env-file=.env server.js",
+    "test": "node test/service.test.js && node test/http.test.js"
+  },
+  "license": "MIT"
+}
