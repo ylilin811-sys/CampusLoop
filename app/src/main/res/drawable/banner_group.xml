@@ -1,0 +1,27 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="720dp"
+    android:height="280dp"
+    android:viewportWidth="720"
+    android:viewportHeight="280">
+    <path android:fillColor="#FF6B6B" android:pathData="M0,0h720v280h-720z"/>
+    <!-- 背景圆圈 -->
+    <path android:fillColor="#1FFFFFFF" android:pathData="M660,30m-120,0a120,120 0 1,0 240,0a120,120 0 1,0 -240,0"/>
+    <path android:fillColor="#1AFFFFFF" android:pathData="M60,260m-100,0a100,100 0 1,0 200,0a100,100 0 1,0 -200,0"/>
+    <!-- 拼单人物肖像 -->
+    <path android:fillColor="#FFD6C2" android:pathData="M470,196q0,-56 44,-56q44,0 44,56z"/>
+    <path android:fillColor="#FFD6C2" android:pathData="M514,108m-26,0a26,26 0 1,0 52,0a26,26 0 1,0 -52,0"/>
+    <path android:fillColor="#FFF0E8" android:pathData="M600,196q0,-56 44,-56q44,0 44,56z"/>
+    <path android:fillColor="#FFF0E8" android:pathData="M644,108m-26,0a26,26 0 1,0 52,0a26,26 0 1,0 -52,0"/>
+    <path android:fillColor="#FFFFFF" android:pathData="M535,200q0,-64 50,-64q50,0 50,64z"/>
+    <path android:fillColor="#FFFFFF" android:pathData="M585,94m-30,0a30,30 0 1,0 60,0a30,30 0 1,0 -60,0"/>
+    <!-- 拼单进度条 -->
+    <path android:fillColor="#59FFFFFF" android:pathData="M470,222h220v18h-220z"/>
+    <path android:fillColor="#FFFFFF" android:pathData="M470,222h150v18h-150z"/>
+    <!-- 节省金币 -->
+    <path android:fillColor="#FFD166" android:pathData="M440,60m-22,0a22,22 0 1,0 44,0a22,22 0 1,0 -44,0"/>
+    <path android:strokeColor="#FFB703" android:strokeWidth="4" android:pathData="M440,60m-14,0a14,14 0 1,0 28,0a14,14 0 1,0 -28,0"/>
+    <path android:fillColor="#FFD166" android:pathData="M380,215m-14,0a14,14 0 1,0 28,0a14,14 0 1,0 -28,0"/>
+    <path android:strokeColor="#FFB703" android:strokeWidth="3" android:pathData="M380,215m-8,0a8,8 0 1,0 16,0a8,8 0 1,0 -16,0"/>
+    <path android:fillColor="#CCFFFFFF" android:pathData="M120,60l6,14 14,6 -14,6 -6,14 -6,-14 -14,-6 14,-6z"/>
+    <path android:fillColor="#99FFFFFF" android:pathData="M300,40m-6,0a6,6 0 1,0 12,0a6,6 0 1,0 -12,0"/>
+</vector>

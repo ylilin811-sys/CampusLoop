@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="128dp"
+    android:height="128dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+
+    <!-- 外围圆环 -->
+    <path
+        android:name="circle_path"
+        android:pathData="M 64 8 A 56 56 0 1 1 63.99 8"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="6"
+        android:strokeLineCap="round" />
+
+    <!-- 购物袋轮廓 -->
+    <path
+        android:name="bag_path"
+        android:fillColor="#FFFFFF"
+        android:pathData="M44,48 L84,48 C86.2,48 88,49.8 88,52 L92,92 C92,94.2 90.2,96 88,96 L40,96 C37.8,96 36,94.2 36,92 L40,52 C40,49.8 41.8,48 44,48 Z M52,48 L52,40 C52,33.4 57.4,28 64,28 C70.6,28 76,33.4 76,40 L76,48 L70,48 L70,40 C70,36.7 67.3,34 64,34 C60.7,34 58,36.7 58,40 L58,48 L52,48 Z" />
+</vector>

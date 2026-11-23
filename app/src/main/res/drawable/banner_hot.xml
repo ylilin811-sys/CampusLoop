@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="720dp"
+    android:height="280dp"
+    android:viewportWidth="720"
+    android:viewportHeight="280">
+    <path android:fillColor="#FF5E3A" android:pathData="M0,0h720v280h-720z"/>
+    <!-- 背景圆圈 -->
+    <path android:fillColor="#1AFFFFFF" android:pathData="M650,250m-130,0a130,130 0 1,0 260,0a130,130 0 1,0 -260,0"/>
+    <path android:fillColor="#1AFFFFFF" android:pathData="M60,30m-90,0a90,90 0 1,0 180,0a90,90 0 1,0 -180,0"/>
+    <!-- 排行榜柱图 -->
+    <path android:fillColor="#59FFFFFF" android:pathData="M400,200h22v44h-22z"/>
+    <path android:fillColor="#80FFFFFF" android:pathData="M432,168h22v76h-22z"/>
+    <path android:fillColor="#B3FFFFFF" android:pathData="M464,132h22v112h-22z"/>
+    <!-- 火焰图形 -->
+    <path android:fillColor="#FFE08A" android:pathData="M600,40C640,86 684,120 664,184C652,222 614,242 590,242C558,242 524,220 520,182C516,150 538,128 556,108C560,128 572,138 584,138C570,106 580,74 600,40Z"/>
+    <path android:fillColor="#FFF6D6" android:pathData="M594,126C620,154 638,172 630,196C624,214 608,224 594,224C578,224 562,212 562,194C562,176 578,158 594,126Z"/>
+    <path android:fillColor="#FFE08A" android:pathData="M530,70m-6,0a6,6 0 1,0 12,0a6,6 0 1,0 -12,0"/>
+    <path android:fillColor="#FFE08A" android:pathData="M680,90m-5,0a5,5 0 1,0 10,0a5,5 0 1,0 -10,0"/>
+    <path android:fillColor="#CCFFFFFF" android:pathData="M500,110m-4,0a4,4 0 1,0 8,0a4,4 0 1,0 -8,0"/>
+    <path android:fillColor="#CCFFFFFF" android:pathData="M696,150m-4,0a4,4 0 1,0 8,0a4,4 0 1,0 -8,0"/>
+</vector>

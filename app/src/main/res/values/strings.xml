@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">闲圈</string>
+    <string name="action_settings">设置</string>
+
+    <!-- 新手引导文案 -->
+    <string name="onboarding_skip">跳过</string>
+    <string name="onboarding_start_action">立即探索</string>
+
+    <!-- 首页轮播活动卡文案 -->
+    <string name="banner_graduation_title">毕业季出清</string>
+    <string name="banner_graduation_subtitle">学长学姐的好书好物，低价转让</string>
+
+    <string name="banner_group_title">一起拼更便宜</string>
+    <string name="banner_group_subtitle">拼饭 · 拼快递 · 拼好物</string>
+
+    <string name="banner_hot_title">🔥本周热榜</string>
+    <string name="banner_hot_subtitle">大家都在抢的闲置</string>
+
+    <string name="banner_textbook_title">开学教材季</string>
+    <string name="banner_textbook_subtitle">版次对一对，省下一顿饭钱</string>
+
+    <!-- 空状态与错误状态文案定义 -->
+    <string name="empty_home_title">集市还空着呢</string>
+    <string name="empty_home_subtitle">来当第一个摆摊的人吧</string>
+    <string name="empty_home_action">去发布</string>
+
+    <string name="empty_search_title">没找到相关宝贝</string>
+    <string name="empty_search_subtitle">换个关键词，或者发个求购试试</string>
+    <string name="empty_search_action">清除搜索</string>
+
+    <string name="empty_my_posts_title">你的小摊还没开张</string>
+    <string name="empty_my_posts_subtitle">吃灰的闲置，也许正是别人在找的</string>
+    <string name="empty_my_posts_action">发布第一件</string>
+
+    <string name="empty_favorites_title">心动的东西会住在这里</string>
+    <string name="empty_favorites_subtitle">逛逛首页，遇到喜欢的点个爱心</string>
+    <string name="empty_favorites_action">去逛逛</string>
+
+    <string name="empty_groups_title">还没有拼单记录</string>
+    <string name="empty_groups_subtitle">一起拼，更便宜</string>
+    <string name="empty_groups_action">看看拼单</string>
+
+    <string name="empty_messages_title">暂时没有新消息</string>
+    <string name="empty_messages_subtitle">去和卖家聊聊吧</string>
+    <string name="empty_messages_action">去逛逛</string>
+
+    <string name="error_network_title">网络开小差了</string>
+    <string name="error_network_subtitle">检查一下网络再试试</string>
+    <string name="error_network_action">重新加载</string>
+
+    <string name="error_generic_title">出了点小问题</string>
+    <string name="error_generic_subtitle">不是你的错，稍后再来</string>
+    <string name="error_generic_action">重试</string>
+
+    <string name="error_ai_title">AI 暂时没想出来</string>
+    <string name="error_ai_subtitle">可以先参考同类商品定价</string>
+    <string name="error_ai_action">再试一次</string>
+</resources>

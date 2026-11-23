@@ -1,0 +1,91 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="360dp"
+    android:height="800dp"
+    android:viewportWidth="360"
+    android:viewportHeight="800">
+
+    <!-- 背景渐变与弧形光圈 -->
+    <path android:pathData="M0,0h360v800h-360z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="180"
+                android:startY="0"
+                android:endX="180"
+                android:endY="800"
+                android:type="linear">
+                <item android:offset="0" android:color="#FF8E43"/>
+                <item android:offset="0.5" android:color="#FF8536"/>
+                <item android:offset="1" android:color="#FFA259"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- 背景装饰大圆圈 -->
+    <path android:fillColor="#15FFFFFF" android:pathData="M180,0m-300,0a300,300 0 1,0 600,0a300,300 0 1,0 -600,0"/>
+    <path android:fillColor="#0DFFFFFF" android:pathData="M180,800m-260,0a260,260 0 1,0 520,0a260,260 0 1,0 -520,0"/>
+
+    <!-- 环形发光圈及核心插画 -->
+    <path
+        android:strokeColor="#73FFFFFF"
+        android:strokeWidth="2.5"
+        android:fillColor="#00000000"
+        android:pathData="M180,270m-115,0a115,115 0 1,0 230,0a115,115 0 1,0 -230,0"/>
+
+    <!-- 地面投影 -->
+    <path android:fillColor="#1C000000" android:pathData="M135,328a45,8 0 1,0 90,0a45,8 0 1,0 -90,0"/>
+
+    <!-- 提手 -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="8"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M152,230v-16a28,28 0 0,1 56,0v16"/>
+
+    <!-- 笑脸购物袋主体 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M136,220h88a12,12 0 0,1 12,12v80a12,12 0 0,1 -12,12h-88a12,12 0 0,1 -12,-12v-80a12,12 0 0,1 12,-12z"/>
+
+    <!-- 袋身眼睛 -->
+    <path android:fillColor="#FF8536" android:pathData="M158,258a5,5 0 1,0 10,0a5,5 0 1,0 -10,0"/>
+    <path android:fillColor="#FF8536" android:pathData="M192,258a5,5 0 1,0 10,0a5,5 0 1,0 -10,0"/>
+
+    <!-- 袋身微笑弧线 -->
+    <path
+        android:strokeColor="#FF8536"
+        android:strokeWidth="6"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M160,278q20,18 40,0"/>
+
+    <!-- 放大镜 -->
+    <path
+        android:fillColor="#E6FFFFFF"
+        android:strokeColor="#FF8536"
+        android:strokeWidth="6"
+        android:pathData="M250,290a24,24 0 1,1 -48,0a24,24 0 1,1 48,0z"/>
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="8"
+        android:strokeLineCap="round"
+        android:pathData="M244,306L272,334"/>
+
+    <!-- 四个环形小 Badge 图标 (左上: 数码/平板, 右上: 金币, 左下: 拍照, 右下: 聊天) -->
+    <!-- 左上 -->
+    <path android:fillColor="#FFFFFF" android:pathData="M80,180a22,22 0 1,0 44,0a22,22 0 1,0 -44,0"/>
+    <path android:fillColor="#FF8536" android:pathData="M92,172h20a3,3 0 0,1 3,3v12a3,3 0 0,1 -3,3h-20a3,3 0 0,1 -3,-3v-12a3,3 0 0,1 3,-3z"/>
+    <!-- 右上 -->
+    <path android:fillColor="#FFFFFF" android:pathData="M236,180a22,22 0 1,0 44,0a22,22 0 1,0 -44,0"/>
+    <path android:fillColor="#FFD166" android:pathData="M258,180m-13,0a13,13 0 1,0 26,0a13,13 0 1,0 -26,0"/>
+    <path android:fillColor="#E09F00" android:pathData="M256,174h4v12h-4z M253,177h10v3h-10z M253,181h10v3h-10z"/>
+    <!-- 左下 -->
+    <path android:fillColor="#FFFFFF" android:pathData="M80,360a22,22 0 1,0 44,0a22,22 0 1,0 -44,0"/>
+    <path android:fillColor="#FF8536" android:pathData="M91,354h22a2,2 0 0,1 2,2v12a2,2 0 0,1 -2,2h-22a2,2 0 0,1 -2,-2v-12a2,2 0 0,1 2,-2z M97,351h10v3h-10z M102,362a4,4 0 1,0 8,0a4,4 0 1,0 -8,0"/>
+    <!-- 右下 -->
+    <path android:fillColor="#FFFFFF" android:pathData="M236,360a22,22 0 1,0 44,0a22,22 0 1,0 -44,0"/>
+    <path android:fillColor="#FF8536" android:pathData="M247,352h22a3,3 0 0,1 3,3v11a3,3 0 0,1 -3,3h-14l-6,5v-5h-2a3,3 0 0,1 -3,-3v-11a3,3 0 0,1 3,-3z"/>
+    <path android:fillColor="#FFFFFF" android:pathData="M253,360a1.5,1.5 0 1,0 3,0a1.5,1.5 0 1,0 -3,0z M257.5,360a1.5,1.5 0 1,0 3,0a1.5,1.5 0 1,0 -3,0z M262,360a1.5,1.5 0 1,0 3,0a1.5,1.5 0 1,0 -3,0z"/>
+
+</vector>

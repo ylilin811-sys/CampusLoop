@@ -1,0 +1,43 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="240dp"
+    android:viewportWidth="240"
+    android:viewportHeight="240">
+    <!-- 背景圆 -->
+    <path android:fillColor="#FFF1E6"
+        android:pathData="M220,120a100,100 0 1,1 -200,0a100,100 0 1,1 200,0z"/>
+    <!-- 地面阴影 -->
+    <path android:fillColor="#FFD9BF"
+        android:pathData="M90,190a30,6 0 1,0 60,0a30,6 0 1,0 -60,0z"/>
+    <!-- 提手 -->
+    <path android:strokeColor="#FF8A3D" android:strokeWidth="6"
+        android:strokeLineCap="round"
+        android:pathData="M100,100v-10a20,20 0 0,1 40,0v10"/>
+    <!-- 袋身 -->
+    <path android:fillColor="#FF8A3D"
+        android:pathData="M84,100h72a6,6 0 0,1 6,6v68a6,6 0 0,1 -6,6h-72a6,6 0 0,1 -6,-6v-68a6,6 0 0,1 6,-6z"/>
+    <!-- 眼睛 -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M104.5,125a3.5,3.5 0 1,0 7,0a3.5,3.5 0 1,0 -7,0z"/>
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M128.5,125a3.5,3.5 0 1,0 7,0a3.5,3.5 0 1,0 -7,0z"/>
+    <!-- 微笑 -->
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:pathData="M105,138q15,14 30,0"/>
+    <!-- 放大镜 -->
+    <path android:fillColor="#CCFFFFFF" android:strokeColor="#FFB067"
+        android:strokeWidth="5"
+        android:pathData="M194,150a18,18 0 1,1 -36,0a18,18 0 1,1 36,0z"/>
+    <path android:strokeColor="#FFB067" android:strokeWidth="6"
+        android:strokeLineCap="round"
+        android:pathData="M189,163L205,179"/>
+    <!-- 装饰星点 -->
+    <path android:strokeColor="#FFB067" android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:pathData="M58,62v12M52,68h12"/>
+    <path android:fillColor="#FFD3A8"
+        android:pathData="M186,75a4,4 0 1,0 8,0a4,4 0 1,0 -8,0z"/>
+    <path android:fillColor="#FFD3A8"
+        android:pathData="M47,150a3,3 0 1,0 6,0a3,3 0 1,0 -6,0z"/>
+</vector>

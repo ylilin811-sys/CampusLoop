@@ -1,0 +1,28 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="720dp"
+    android:height="280dp"
+    android:viewportWidth="720"
+    android:viewportHeight="280">
+    <path android:fillColor="#FF8A3D" android:pathData="M0,0h720v280h-720z"/>
+    <!-- 背景圆圈 -->
+    <path android:fillColor="#1FFFFFFF" android:pathData="M640,40m-130,0a130,130 0 1,0 260,0a130,130 0 1,0 -260,0"/>
+    <path android:fillColor="#1AFFFFFF" android:pathData="M70,270m-95,0a95,95 0 1,0 190,0a95,95 0 1,0 -190,0"/>
+    <path android:fillColor="#1AFFFFFF" android:pathData="M400,262m-48,0a48,48 0 1,0 96,0a48,48 0 1,0 -96,0"/>
+    <!-- 书堆 -->
+    <path android:fillColor="#FFD08A" android:pathData="M478,218h180v34h-180z"/>
+    <path android:fillColor="#FFB347" android:pathData="M478,236h180v4h-180z"/>
+    <path android:fillColor="#FFE2BD" android:pathData="M494,184h150v34h-150z"/>
+    <path android:fillColor="#FFC27A" android:pathData="M494,202h150v4h-150z"/>
+    <path android:fillColor="#F3FFFFFF" android:pathData="M510,150h120v34h-120z"/>
+    <path android:fillColor="#FFD9A8" android:pathData="M510,168h120v4h-120z"/>
+    <!-- 学士帽 -->
+    <path android:fillColor="#5C4033" android:pathData="M520,92v26q50,26 100,0v-26l-50,20z"/>
+    <path android:fillColor="#4A3426" android:pathData="M570,52L668,86L570,120L472,86Z"/>
+    <path android:strokeColor="#FFE08A" android:strokeWidth="5" android:strokeLineCap="round" android:pathData="M668,86L668,128"/>
+    <path android:fillColor="#FFE08A" android:pathData="M668,134m-8,0a8,8 0 1,0 16,0a8,8 0 1,0 -16,0"/>
+    <!-- 装饰星星 -->
+    <path android:fillColor="#D9FFFFFF" android:pathData="M130,70l6,14 14,6 -14,6 -6,14 -6,-14 -14,-6 14,-6z"/>
+    <path android:fillColor="#B3FFFFFF" android:pathData="M400,40l4,9 9,4 -9,4 -4,9 -4,-9 -9,-4 9,-4z"/>
+    <path android:fillColor="#99FFFFFF" android:pathData="M330,215m-6,0a6,6 0 1,0 12,0a6,6 0 1,0 -12,0"/>
+    <path android:fillColor="#99FFFFFF" android:pathData="M700,200m-5,0a5,5 0 1,0 10,0a5,5 0 1,0 -10,0"/>
+</vector>
